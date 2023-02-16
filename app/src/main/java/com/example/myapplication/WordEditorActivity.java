@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -47,12 +48,18 @@ public class WordEditorActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         wordDBManager.openDb();
+        affixesDBManager.openDb();
+        affixCombinationDBManager.openDb();
+        affixCombinationDefsDBManager.openDb();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         wordDBManager.closeDb();
+        affixesDBManager.closeDb();
+        affixCombinationDBManager.closeDb();
+        affixCombinationDefsDBManager.closeDb();
     }
 
     public void onClickSaveWord(View view){
@@ -68,11 +75,15 @@ public class WordEditorActivity extends AppCompatActivity {
     }
 
     public void onClickSaveCombinations(View view){
-        affixCombinationDefsDBManager.createWord(mEditTextDefinitions.getText().toString().split(" ")[0], Integer.parseInt(mEditTextDefinitions.getText().toString().split(" ")[1]));
+        affixCombinationDBManager.createWord(Integer.parseInt(mEditTextCombinations.getText().toString().split(" ")[0]), Integer.parseInt(mEditTextCombinations.getText().toString().split(" ")[1]));
     }
 
     public void Po(View view){
-        mTextView.setText(wordDBManager.getAllWords().toString());
+        String text = wordDBManager.getAllWords().toString();
+
+        if (!text.equals("")){
+            mTextView.setText(text);
+        }
 
     }
 }

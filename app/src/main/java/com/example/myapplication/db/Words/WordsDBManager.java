@@ -25,26 +25,4 @@ public class WordsDBManager {
     public void closeDb(){
         dbHelper.close();
     }
-
-    public void createWord(String word, String translation){
-        ContentValues cv = new ContentValues();
-        cv.put(WordsDB.KEY_WORD, word);
-        cv.put(WordsDB.KEY_TRANSLATION,translation);
-
-        db.insert(WordsDB.TABLE_NAME, null, cv);
-    }
-
-    public List<String> getAllWords(){
-        List<String> tempList = new ArrayList<>();
-        Cursor c = db.rawQuery("SELECT * FROM " + WordsDB.TABLE_NAME, null);
-
-        if (c.moveToFirst()){
-            do {
-                tempList.add(c.getString(0) + " " + c.getString(1) + " " + c.getString(2));
-            } while(c.moveToNext());
-        }
-
-        c.close();
-        return tempList;
-    }
 }

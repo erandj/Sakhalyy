@@ -26,13 +26,6 @@ public class AffixesDBManager {
         dbHelper.close();
     }
 
-    public void createWord(String affix){
-        ContentValues cv = new ContentValues();
-        cv.put(AffixesDB.KEY_AFFIX, affix);
-
-        db.insert(AffixesDB.TABLE_NAME, null, cv);
-    }
-
     public List<String> getAllWords(){
         List<String> tempList = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM " + AffixesDB.TABLE_NAME, null);

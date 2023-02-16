@@ -26,14 +26,6 @@ public class AffixCombinationDBManager {
         dbHelper.close();
     }
 
-    public void createWord(int definitionId, int affixId){
-        ContentValues cv = new ContentValues();
-        cv.put(AffixCombinationDB.KEY_DEFINITION_ID, definitionId);
-        cv.put(AffixCombinationDB.KEY_AFFIX_ID, affixId);
-
-        db.insert(AffixCombinationDB.TABLE_NAME, null, cv);
-    }
-
     public List<String> getAllWords(){
         List<String> tempList = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM " + AffixCombinationDB.TABLE_NAME, null);
