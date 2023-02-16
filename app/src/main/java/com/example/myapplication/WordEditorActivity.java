@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.db.AffixCombinations.AffixCombinationDBManager;
 import com.example.myapplication.db.Affixes.AffixesDBManager;
+import com.example.myapplication.db.DBHelper;
 import com.example.myapplication.db.Definition.AffixCombinationDefsDB;
 import com.example.myapplication.db.Definition.AffixCombinationDefsDBManager;
 import com.example.myapplication.db.Words.WordsDBManager;
@@ -22,6 +23,8 @@ public class WordEditorActivity extends AppCompatActivity {
     private EditText mEditTextCombinations;
     private TextView mTextView;
 
+    private DBHelper dbHelper;
+
     private WordsDBManager wordDBManager;
     private AffixesDBManager affixesDBManager;
     private AffixCombinationDefsDBManager affixCombinationDefsDBManager;
@@ -31,6 +34,8 @@ public class WordEditorActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_editor);
+
+        dbHelper = new DBHelper(this);
 
         wordDBManager = new WordsDBManager(this);
         affixesDBManager = new AffixesDBManager(this);
@@ -63,19 +68,7 @@ public class WordEditorActivity extends AppCompatActivity {
     }
 
     public void onClickSaveWord(View view){
-        wordDBManager.createWord(mEditTextWord.getText().toString().split(" ")[0], mEditTextWord.getText().toString().split(" ")[1]);
-    }
-
-    public void onClickSaveAffixes(View view){
-        affixesDBManager.createWord(mEditTextAffixes.getText().toString());
-    }
-
-    public void onClickSaveDefinitions(View view){
-        affixCombinationDefsDBManager.createWord(mEditTextDefinitions.getText().toString().split(" ")[0], Integer.parseInt(mEditTextDefinitions.getText().toString().split(" ")[1]));
-    }
-
-    public void onClickSaveCombinations(View view){
-        affixCombinationDBManager.createWord(Integer.parseInt(mEditTextCombinations.getText().toString().split(" ")[0]), Integer.parseInt(mEditTextCombinations.getText().toString().split(" ")[1]));
+        dbHelper.addWord();
     }
 
     public void Po(View view){
