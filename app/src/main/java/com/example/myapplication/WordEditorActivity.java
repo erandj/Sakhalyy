@@ -19,9 +19,8 @@ public class WordEditorActivity extends AppCompatActivity {
 
     private EditText mEditTextWord;
     private EditText mEditTextAffixes;
-    private EditText mEditTextDefinitions;
-    private EditText mEditTextCombinations;
-    private TextView mTextView;
+    private TextView mTextViewWords;
+    private TextView mTextViewAffixes;
 
     private DBHelper dbHelper;
 
@@ -44,9 +43,9 @@ public class WordEditorActivity extends AppCompatActivity {
 
         mEditTextWord = findViewById(R.id.editTextWord);
         mEditTextAffixes = findViewById(R.id.editTextAffixes);
-        mEditTextDefinitions = findViewById(R.id.editTextDefinitions);
-        mEditTextCombinations = findViewById(R.id.editTextCombinations);
-        mTextView = findViewById(R.id.textViewBDWord);
+        mTextViewWords = findViewById(R.id.textViewWords);
+        mTextViewAffixes = findViewById(R.id.textViewAffixes);
+
     }
 
     @Override
@@ -68,15 +67,17 @@ public class WordEditorActivity extends AppCompatActivity {
     }
 
     public void onClickSaveWord(View view){
-        dbHelper.addWord();
+        dbHelper.addWord(mEditTextWord.toString().split(" ")[0], mEditTextWord.toString().split(" ")[0]);
     }
 
+    public void onClickSaveAffix(View view){
+        dbHelper.addAffix(mEditTextAffixes.toString());
+    }
+
+
+
     public void Po(View view){
-        String text = wordDBManager.getAllWords().toString();
-
-        if (!text.equals("")){
-            mTextView.setText(text);
-        }
-
+        mTextViewWords.setText(dbHelper.getWord());
+        mTextViewAffixes.setText(dbHelper.getAffix());
     }
 }

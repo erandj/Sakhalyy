@@ -13,7 +13,8 @@ public class AffixCombinationDB {
     public static final String CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     KEY_ID + " INTEGER PRIMARY KEY," +
-                    KEY_DEFINITION_ID + " integer," +
+                    KEY_DEFINITION_ID + " INTEGER," +
+                    KEY_AFFIX_ID + " INTEGER," +
                     " FOREIGN KEY ("+KEY_DEFINITION_ID+") REFERENCES "+ AffixCombinationDefsDB.TABLE_NAME +"("+AffixCombinationDefsDB.KEY_ID+")" +
                     " FOREIGN KEY ("+KEY_AFFIX_ID+") REFERENCES "+ AffixesDB.TABLE_NAME +"("+AffixesDB.KEY_ID+"));";
 

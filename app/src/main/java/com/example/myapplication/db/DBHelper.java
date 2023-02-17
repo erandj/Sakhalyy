@@ -13,7 +13,7 @@ import com.example.myapplication.db.Definition.AffixCombinationDefsDB;
 import com.example.myapplication.db.Words.WordsDB;
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     public DBHelper(Context context) {
         super(context, "sakhalyy.db", null, DATABASE_VERSION);
@@ -37,16 +37,26 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addAffix(Affix affix){
+    public void addAffix(String affix){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues affixvalues = new ContentValues();
-        affixvalues.put(AffixesDB.KEY_AFFIX, affix.getAffix());
+        affixvalues.put(AffixesDB.KEY_AFFIX, affix);
 
         db.insert(AffixesDB.TABLE_NAME, null, affixvalues);
     }
 
-    public void addWord(String word, String translation, Affix[][] combinations, String[] definitions){
+    public void addWord(String word, String translation){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues wordvalues = new ContentValues();
+        wordvalues.put(WordsDB.KEY_WORD, word);
+        wordvalues.put(WordsDB.KEY_TRANSLATION,translation);
+
+        db.insert(WordsDB.TABLE_NAME, null, wordvalues);
+    }
+
+    public void addFullWord(String word, String translation, Affix[][] combinations, String[] definitions){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues wordvalues = new ContentValues();
@@ -54,8 +64,6 @@ public class DBHelper extends SQLiteOpenHelper {
         wordvalues.put(WordsDB.KEY_TRANSLATION,translation);
         long wordId = db.insert(WordsDB.TABLE_NAME, null, wordvalues);
 
-        //[affix1, affix2, affix3][affix1, affix2][affix1, affix2]
-        //['Наши певцы'][][]
         for (int i=0; i<combinations.length; i++){
             ContentValues definitionvalues = new ContentValues();
 
@@ -135,5 +143,51 @@ public class DBHelper extends SQLiteOpenHelper {
 
             db.insert(AffixCombinationDB.TABLE_NAME, null, affixCombinationsValues);
         }
+    }
+
+    public String getWord(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor c = db.query(WordsDB.TABLE_NAME, null, null, null, null, null, null);
+
+        String str = "";
+
+        if (c != null) {
+            if (c.moveToFirst()) {
+                do {
+                    str = "";
+                    for (String cn : c.getColumnNames()) {
+                        str = str.concat(cn + " = "
+                                + c.getString(c.getColumnIndex(cn)) + "; ");
+                    }
+
+                } while (c.moveToNext());
+            }
+            c.close();
+        }
+        return str;
+    }
+
+    public String getAffix(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor c = db.query(AffixesDB.TABLE_NAME, null, null, null, null, null, null);
+
+        String str = "";
+
+        if (c != null) {
+            if (c.moveToFirst()) {
+                do {
+                    str = "";
+                    for (String cn : c.getColumnNames()) {
+                        str = str.concat(cn + " = "
+                                + c.getString(c.getColumnIndex(cn)) + "; ");
+                    }
+
+                } while (c.moveToNext());
+            }
+            c.close();
+        }
+        return str;
     }
 }

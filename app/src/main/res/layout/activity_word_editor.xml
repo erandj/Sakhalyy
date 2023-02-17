@@ -19,43 +19,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextDefinitions"
-        android:layout_width="172dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Definition + id_word"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.891"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
         android:id="@+id/editTextAffixes"
         android:layout_width="175dp"
         android:layout_height="45dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Affixes"
         android:inputType="textPersonName"
+        android:onClick="onClickSaveAffix"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.868"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextWord" />
-
-    <EditText
-        android:id="@+id/editTextCombinations"
-        android:layout_width="175dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="id_def + id_aff"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.902"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDefinitions" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonWord"
@@ -63,112 +38,59 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:onClick="onClickSaveWord"
-        android:text="СоздатьW"
+        android:text="Добавление"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAffixes" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextWord" />
 
     <Button
-        android:id="@+id/buttonDefinitions"
+        android:id="@+id/buttonAffix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:onClick="onClickSaveDefinitions"
-        android:text="СоздатьD"
+        android:text="Добавление"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.815"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCombinations" />
-
-    <Button
-        android:id="@+id/buttonCombinations"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:onClick="onClickSaveCombinations"
-        android:text="СоздатьC"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.814"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCombinations" />
-
-    <Button
-        android:id="@+id/buttonAffixes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:onClick="onClickSaveAffixes"
-        android:text="СоздатьA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
+        app:layout_constraintHorizontal_bias="0.827"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAffixes" />
 
-    <TextView
-        android:id="@+id/textViewBDWord"
-        android:layout_width="388dp"
-        android:layout_height="112dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Show"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textViewBDAffix"
-        android:layout_width="388dp"
-        android:layout_height="112dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Show"
-        app:layout_constraintVertical_bias="0.32" />
-
-    <TextView
-        android:id="@+id/textViewBDCombinations"
-        android:layout_width="391dp"
-        android:layout_height="112dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Show"
-        app:layout_constraintVertical_bias="0.988" />
-
-    <TextView
-        android:id="@+id/textViewBDDefinitions"
-        android:layout_width="388dp"
-        android:layout_height="122dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Show"
-        app:layout_constraintVertical_bias="0.66" />
-
     <Button
-        android:id="@+id/Show"
+        android:id="@+id/buttonDef"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
-        android:onClick="Po"
-        android:text="Show"
+        android:layout_marginTop="124dp"
+        android:text="Добавить слова с аффиксами"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="121dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="160dp"
-        android:text="Разделитель - пробел"
+    <Button
+        android:id="@+id/buttonPo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="Po"
+        android:text="Показать слова и аффиксы"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonDef" />
+
+    <TextView
+        android:id="@+id/textViewWords"
+        android:layout_width="186dp"
+        android:layout_height="432dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="12dp"
+        tools:layout_editor_absoluteY="282dp" />
+
+    <TextView
+        android:id="@+id/textViewAffixes"
+        android:layout_width="186dp"
+        android:layout_height="432dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="209dp"
+        tools:layout_editor_absoluteY="283dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
