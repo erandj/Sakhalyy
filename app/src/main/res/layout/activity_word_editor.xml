@@ -49,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:onClick="onClickSaveAffix"
         android:text="Добавление"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.827"
@@ -82,23 +83,19 @@
         android:id="@+id/textViewWords"
         android:layout_width="186dp"
         android:layout_height="432dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPo"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPo" />
 
     <TextView
         android:id="@+id/textViewAffixes"
         android:layout_width="186dp"
         android:layout_height="432dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPo"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

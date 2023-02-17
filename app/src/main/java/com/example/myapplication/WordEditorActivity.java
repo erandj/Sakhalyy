@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 import com.example.myapplication.db.AffixCombinations.AffixCombinationDBManager;
 import com.example.myapplication.db.Affixes.AffixesDBManager;
 import com.example.myapplication.db.DBHelper;
-import com.example.myapplication.db.Definition.AffixCombinationDefsDB;
 import com.example.myapplication.db.Definition.AffixCombinationDefsDBManager;
 import com.example.myapplication.db.Words.WordsDBManager;
 
@@ -73,19 +71,21 @@ public class WordEditorActivity extends AppCompatActivity {
         String word = mEditTextWord.getText().toString().split(" ")[0];
         String translation = mEditTextWord.getText().toString().split(" ")[1];
         dbHelper.addWord(word, translation);
+        mEditTextWord.setText("");
     }
 
     public void onClickSaveAffix(View view){
-        dbHelper.addAffix(mEditTextAffixes.toString());
+        dbHelper.addAffix(mEditTextAffixes.getText().toString());
+        mEditTextAffixes.setText("");
     }
 
     public void Po(View view){
         mTextViewWords.setText(dbHelper.getWords().toString());
-        mTextViewAffixes.setText(dbHelper.getAffixes());
+        mTextViewAffixes.setText(dbHelper.getAffixes().toString());
     }
 
     public void toCombinations(View view){
-        Intent intent = new Intent(this, AffixListActivity.class);
+        Intent intent = new Intent(this, WordListChangeActivity.class);
         startActivity(intent);
     }
 }
