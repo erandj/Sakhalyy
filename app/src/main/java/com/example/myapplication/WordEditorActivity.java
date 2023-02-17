@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -66,18 +67,25 @@ public class WordEditorActivity extends AppCompatActivity {
         affixCombinationDefsDBManager.closeDb();
     }
 
+
+
     public void onClickSaveWord(View view){
-        dbHelper.addWord(mEditTextWord.toString().split(" ")[0], mEditTextWord.toString().split(" ")[0]);
+        String word = mEditTextWord.getText().toString().split(" ")[0];
+        String translation = mEditTextWord.getText().toString().split(" ")[1];
+        dbHelper.addWord(word, translation);
     }
 
     public void onClickSaveAffix(View view){
         dbHelper.addAffix(mEditTextAffixes.toString());
     }
 
-
-
     public void Po(View view){
-        mTextViewWords.setText(dbHelper.getWord());
-        mTextViewAffixes.setText(dbHelper.getAffix());
+        mTextViewWords.setText(dbHelper.getWords().toString());
+        mTextViewAffixes.setText(dbHelper.getAffixes());
+    }
+
+    public void toCombinations(View view){
+        Intent intent = new Intent(this, AffixListActivity.class);
+        startActivity(intent);
     }
 }

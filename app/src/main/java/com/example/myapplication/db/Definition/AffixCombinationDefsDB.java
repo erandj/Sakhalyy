@@ -11,7 +11,7 @@ public class AffixCombinationDefsDB {
 
     public static final String CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +
-                    KEY_ID + " INTEGER PRIMARY KEY  ," +
+                    KEY_ID + " INTEGER PRIMARY KEY UNIQUE," +
                     KEY_DEFINITION + " TEXT," +
                     KEY_WORD_ID + " integer," +
                     " FOREIGN KEY ("+KEY_WORD_ID+") REFERENCES "+ WordsDB.TABLE_NAME +"("+WordsDB.KEY_ID+"));";

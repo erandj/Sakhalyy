@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.myapplication.Affix;
 import com.example.myapplication.db.AffixCombinations.AffixCombinationDB;
@@ -12,8 +13,10 @@ import com.example.myapplication.db.Affixes.AffixesDB;
 import com.example.myapplication.db.Definition.AffixCombinationDefsDB;
 import com.example.myapplication.db.Words.WordsDB;
 
+import java.util.ArrayList;
+
 public class DBHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 5;
 
     public DBHelper(Context context) {
         super(context, "sakhalyy.db", null, DATABASE_VERSION);
@@ -145,22 +148,19 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public String getWord(){
+    public ArrayList<String> getWords(){
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor c = db.query(WordsDB.TABLE_NAME, null, null, null, null, null, null);
 
-        String str = "";
+        ArrayList<String> str = new ArrayList<String>();
 
         if (c != null) {
             if (c.moveToFirst()) {
                 do {
-                    str = "";
                     for (String cn : c.getColumnNames()) {
-                        str = str.concat(cn + " = "
-                                + c.getString(c.getColumnIndex(cn)) + "; ");
+                        str.add(c.getString(1) + " " + c.getString(2));
                     }
-
                 } while (c.moveToNext());
             }
             c.close();
@@ -168,7 +168,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return str;
     }
 
-    public String getAffix(){
+    public String getAffixes(){
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor c = db.query(AffixesDB.TABLE_NAME, null, null, null, null, null, null);

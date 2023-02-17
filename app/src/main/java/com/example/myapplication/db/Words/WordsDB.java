@@ -9,7 +9,7 @@ public class WordsDB{
 
     public static final String CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +
-                    KEY_ID + " INTEGER PRIMARY KEY," +
+                    KEY_ID + " INTEGER PRIMARY KEY UNIQUE," +
                     KEY_WORD + " TEXT," +
                     KEY_TRANSLATION + " TEXT)";
 

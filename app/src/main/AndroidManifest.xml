@@ -13,6 +13,13 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".WordPickActivity"
             android:exported="false">
             <meta-data
@@ -34,6 +41,7 @@
         </activity>
         <activity android:name=".WordEditorActivity" />
         <activity android:name=".ConstructorActivity" />
+        <activity android:name="com.example.myapplication.AffixListActivity" />
     </application>
 
 </manifest>

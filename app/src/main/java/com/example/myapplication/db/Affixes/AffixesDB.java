@@ -8,7 +8,7 @@ public class AffixesDB {
 
     public static final String CREATE_ENTRIES =
             "CREATE TABLE " + TABLE_NAME + " (" +
-                    KEY_ID + " INTEGER PRIMARY KEY," +
+                    KEY_ID + " INTEGER PRIMARY KEY UNIQUE," +
                     KEY_AFFIX + " TEXT)";
 
     public static final String DELETE_ENTRIES =
